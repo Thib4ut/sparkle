@@ -2,6 +2,7 @@ const { Client, Collection } = require('discord.js');
 const { readdirSync } = require("fs");
 const { sep } = require("path");
 const { success, error, warning } = require("log-symbols");
+const functions = require('./functions');
 
 const config = require("./config/config");
 
@@ -40,7 +41,12 @@ const loading = (dir = "./commands/") => {
 loading();
 
 bot.on('ready', () => {
-  bot.user.setActivity(`${bot.guilds.size} serveur(s) et ${bot.users.size} utilisateur(s). Besoin d'aide ? Faites ${bot.config.prefix}help`);
+  setInterval(() => {
+    bot.user.setActivity(`${bot.guilds.size} serveur(s).`, { type: "WATCHING" });
+    setTimeout(() => {
+      bot.user.setActivity(`${bot.users.size} utilisateur, puis bessoin d'aide ? Faite ${bot.config.prefix}help.`, { type: "WATCHING" })
+    }, 30000)
+  }, 60000)
   console.log(`Je suis lancé! Mon prefix est ${bot.config.prefix}.`);
 });
 
@@ -61,7 +67,7 @@ bot.on('message', async message => {
   if (bot.commands.has(cmd)) command = bot.commands.get(cmd);
   else if (bot.aliases.has(cmd)) command = bot.commands.get(bot.aliases.get(cmd));
 
-  if (command) command.run(bot, message, args);
+  if (command) command.run(bot, message, args, functions);
 });
 
 bot.login(bot.config.token).catch(console.error());

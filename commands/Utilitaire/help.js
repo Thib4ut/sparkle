@@ -5,7 +5,7 @@ module.exports.run = (bot, message, args) => {
 
   const embed = new RichEmbed()
   .setAuthor(`Commande \`help\` effectuée.`, message.author.displayAvatarURL)
-  .setColor("#5a83c4")
+  .setColor("#b80754")
   .setFooter(`Effectuée le`, message.author.displayAvatarURL)
   .setTimestamp()
   if (args[0]) {
