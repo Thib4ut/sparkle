@@ -2,7 +2,7 @@ const { RichEmbed } = require('discord.js');
 
 module.exports.run = (bot, message, args) => {
   // informations
-  let infos {
+  let infos = {
     name: bot.user,
     id: bot.user.id,
     servers: bot.guilds.size,
