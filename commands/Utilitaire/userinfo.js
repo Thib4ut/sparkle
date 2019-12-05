@@ -1,7 +1,6 @@
 const { RichEmbed } = require('discord.js');
-const error = require("../../functions.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message, args, err) => {
   // je défini la variable member pour voir s'il y a eu une mention de faite
   var member = message.mentions.members.first();
   // je vérifi si une mention a été mise
@@ -32,7 +31,7 @@ module.exports.run = async (bot, message, args) => {
       status: member.presence.status.replace("dnd", "Ne pas déranger.").replace("idle", "Inactif.").replace("offline", "Hors ligne.").replace("online", "En ligne.")
     }
     // SI l'utilisateur est un robot
-    if (informations.name.bot) return message.channel.send(error("L'utilisateur mentionné n'est pas humain. Or, vous devez mentionner quelqu'un d'humain.", bot.user.displayAvatarURL, message.author.displayAvatarURL));
+    if (informations.name.bot) return message.channel.send(err("L'utilisateur mentionné n'est pas humain. Or, vous devez mentionner quelqu'un d'humain."));
     // SINON
     let embed = new RichEmbed()
     .setAuthor(`${informations.tag}`, informations.pdp)

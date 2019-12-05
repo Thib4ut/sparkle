@@ -2,7 +2,7 @@ const { Client, Collection } = require('discord.js');
 const { readdirSync } = require("fs");
 const { sep } = require("path");
 const { success, error, warning } = require("log-symbols");
-const functions = require('./functions');
+const err = require('./functions');
 
 const config = require("./config/config");
 
@@ -67,7 +67,7 @@ bot.on('message', async message => {
   if (bot.commands.has(cmd)) command = bot.commands.get(cmd);
   else if (bot.aliases.has(cmd)) command = bot.commands.get(bot.aliases.get(cmd));
 
-  if (command) command.run(bot, message, args, functions);
+  if (command) command.run(bot, message, args, err);
 });
 
 bot.login(bot.config.token).catch(console.error());
