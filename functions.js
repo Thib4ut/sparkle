@@ -9,4 +9,15 @@ function error (msg) {
   return ErrorEmbeding;
 }
 
-module.exports = error;
+function setCapitalize (word) {
+  let split = word.split("");
+  // récup la première lettre
+  let firstLetter = split[0];
+
+  return split.join('').replace(firstLetter, firstLetter.toUpperCase());
+}
+
+module.exports = {
+  err: error,
+  capital: setCapitalize
+}

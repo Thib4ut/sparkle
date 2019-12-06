@@ -31,7 +31,7 @@ module.exports.run = async (bot, message, args, err) => {
       status: member.presence.status.replace("dnd", "Ne pas déranger.").replace("idle", "Inactif.").replace("offline", "Hors ligne.").replace("online", "En ligne.")
     }
     // SI l'utilisateur est un robot
-    if (informations.name.bot) return message.channel.send(err("L'utilisateur mentionné n'est pas humain. Or, vous devez mentionner quelqu'un d'humain."));
+    if (informations.name.bot) return message.channel.send(functions.err("L'utilisateur mentionné n'est pas humain. Or, vous devez mentionner quelqu'un d'humain."));
     // SINON
     let embed = new RichEmbed()
     .setAuthor(`${informations.tag}`, informations.pdp)
